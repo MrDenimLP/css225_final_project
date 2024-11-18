@@ -20,7 +20,7 @@ Detective's Investigation is an interactive Python-based text adventure that gui
 The source code for this project is hosted on **GitHub**. Clone the repository using:
 ```bash
 git clone <repository_url>
-
+```
 ---
 
 ## Languages and Technologies
@@ -49,22 +49,22 @@ git clone <repository_url>
 ```bash
 git clone <repository_url>
 cd <repository_url>
-
+```
 2. Verify Python Installation: Ensure Python 3.8+ is installed by running:
 ```bash
 python --version
-
+```
 If not installed, download Python from python.org.
 
 3. Run the Game: From the project directory, execute either:
 ```bash
 python main_game.py
-
+```
 or
 
 ```bash
 python3 main_game.py
-
+```
 ---
 
 ## Architecture Overview
@@ -92,12 +92,12 @@ To start the game:
 3. Run either of the following commands:
 ```bash
 python main_game.py
-
+```
 or
 
 ```bash
 python3 main_game.py
-
+```
 4. Enter your name when prompted, and the game begins.
 
 ---

@@ -6,9 +6,12 @@
 
 
 
+## Imports the defined 'player' variable and 'set_player_name' function from 'global_database.py'.
+## Imports the 'chapter1' to 'chapter5' .py files as modules.
 from global_database import player, set_player_name
 import chapter1, chapter2, chapter3, chapter4, chapter5
 
+## Defines a function to start the game.
 def start_game():
     player_name = input("Enter your name: ")
     set_player_name(player_name)

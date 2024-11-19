@@ -6,25 +6,31 @@
 
 
 
+## Imports Python's 'random' and 'time' libraries and directly imports the 'loading', 'chapter2', 'chapter3', and 'chapter4' .py files.
+## Imports a number of lists and functions from 'global_database.py'.
 from global_database import player, get_random_npc_name, select_murder_weapon, hotel_names, bar_names, city_names, gun_store_names, display_chapter_visits
 import random, time, loading, chapter2, chapter3, chapter4
 
+## Defines variables calling certain list entries at random.
 random_hotel = random.choice(hotel_names)
 random_bar = random.choice(bar_names)
 random_city = random.choice(city_names)
 
+## Globally defines the 'select_murder_weapon' function to a variable.
 global weapon
 weapon = select_murder_weapon()
 
+## Defines a function to start the chapter.
 def start_chapter():
+    ## Calls the 'mark_chapter_visited' function from the Player class with the specified 'chapter1' entry.
     player.mark_chapter_visited("chapter1")
     print("Chapter 1: Welcome to the investigation")
     print(f"You are in the city of {random_city}, at {random_hotel} where an individual was found murdered in their hotel room. A guest in an adjoining room found the victim.")
     
-    display_chapter_visits() ## DEBUG ##
+    ## DEBUG ## display_chapter_visits() ## DEBUG ##
 
     while True:
-        ## Display menu options with numbers, specifying already selected choices.
+        ## Displays menu options with numbers, specifying already selected choices.
         print("\nChoose an action:")
         npc_name = get_random_npc_name()
         if npc_name and not player.is_choice_selected("chapter1", "talk_to_guests"):
@@ -49,8 +55,10 @@ def start_chapter():
 
         print("Q. Quit game")
 
+        ## Hooks the user input to a variable.
         choice = input("Enter your choice: ").strip()
 
+        ## Specifies which inputs are allowed and their effects.
         if choice == "1" and npc_name and not player.is_choice_selected("chapter1", "talk_to_guests"):
             talk_to_guests(npc_name)
             player.mark_choice_selected("chapter1", "talk_to_guests")
@@ -106,10 +114,11 @@ def start_chapter():
         else:
             print("Invalid choice or action already completed. Please select another option.")
 
+## Defines a function for user interaction.
 def talk_to_guests(npc_name):
-    sound = weapon.get("sound", "a mysterious sound was heard.")
+    sound = weapon.get("sound", "a mysterious sound was heard.") ## Uses the previously defines global variable to retrieve the 'sound' entry.
     print(f"You talk to {npc_name} and gather information about the noise complaint. They state that they heard {sound}")
-    player.add_evidence(1)
+    player.add_evidence(1) ## Adds a positive value to the evidence counter.
     time.sleep(1)
     print()
 

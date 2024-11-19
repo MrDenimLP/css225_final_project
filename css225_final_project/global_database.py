@@ -6,9 +6,12 @@
 
 
 
+## Imports Python's 'random' library.
+## Imports the Player class from 'player.py'.
 import random
 from player import Player
 
+## Defines the imported 'Player' class into 'player' for easier coding.
 player = Player()
 
 ## NPC names list for random selection.
@@ -121,7 +124,7 @@ def get_random_npc_name():
         used_npc_names.append(selected_name)
         return selected_name
     return None ## All names have been used.
-    print("All NPC names used. You should not be seeing this.")
+    print("DEBUG: All NPC names used. You should not be seeing this.")
 
 ## Function to set player name.
 def set_player_name(name):

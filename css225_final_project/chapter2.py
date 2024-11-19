@@ -6,15 +6,21 @@
 
 
 
+## Imports Python's 'random' and 'time' libraries and directly imports the 'loading', 'chapter1', 'chapter3', and 'chapter4' .py files.
+## Imports a number of lists and functions from 'global_database.py'.
 from global_database import player, get_random_npc_name, select_murder_weapon, hotel_names, bar_names, city_names, gun_store_names, display_chapter_visits
 import random, time, loading, chapter1, chapter3, chapter4
 
+## Defines variable calling a gun store list entry at random.
 random_gun_store = random.choice(gun_store_names)
 
+## Globally defines the 'get_random_npc_name' function to a variable.
 global npc_name
 npc_name = get_random_npc_name()
 
+## Defines a function to start the chapter.
 def start_chapter():
+    ## Calls the 'mark_chapter_visited' function from the Player class with the specified 'chapter2' entry.
     player.mark_chapter_visited("chapter2")
     print("Chapter 2: A Den of Sin")
     print(f"""After investigating the murder of a patron at {chapter1.random_hotel},
@@ -47,8 +53,10 @@ you move on to {chapter1.random_bar}, a nearby bar, for any possible leads.""")
         
         print("Q. Quit game")
 
+        ## Hooks the user input to a variable.
         choice = input("Enter your choice: ").strip()
 
+        ## Specifies which inputs are allowed and their effects.
         if choice == "1" and npc_name and not player.is_choice_selected("chapter2", "talk_to_bartender"):
             talk_to_bartender(npc_name)
             player.mark_choice_selected("chapter2", "talk_to_bartender")
@@ -104,11 +112,11 @@ you move on to {chapter1.random_bar}, a nearby bar, for any possible leads.""")
         else:
             print("Invalid choice or action already completed. Please select another option.")
 
-
+## Defines a function for user interaction.
 def talk_to_bartender(npc_name):
     print(f"""You talk to {npc_name}. They confirm that the victim was in {chapter1.random_bar} at that time.
 They mention that the person they were with were talking about just coming from {random_gun_store}.""")
-    player.add_evidence(1)
+    player.add_evidence(1) ## Adds a positive value to the evidence counter.
     time.sleep(1)
     print()
 

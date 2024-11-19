@@ -6,13 +6,18 @@
 
 
 
+## Imports Python's 'random' and 'time' libraries and directly imports the 'loading', 'chapter1', 'chapter2', 'chapter3', and 'chapter4' .py files.
+## Imports a number of lists and functions from 'global_database.py'.
 from global_database import player, get_random_npc_name, select_murder_weapon, hotel_names, bar_names, city_names, gun_store_names, display_chapter_visits
 import random, time, loading, chapter1, chapter2, chapter3, chapter4
 
+## Globally defines the 'get_random_npc_name' function to a variable.
 global npc_name
 npc_name = get_random_npc_name()
 
+## Defines a function to start the chapter.
 def start_chapter():
+    ## Calls the 'mark_chapter_visited' function from the Player class with the specified 'chapter34' entry.
     player.mark_chapter_visited("chapter5")
     print("Chapter 5: Grabbing a Viper by it's Tail")
     print(f"""After visiting {chapter4.npc_name}, your contact at the {chapter1.random_city} police precinct, you successfully brought enough evidence to bear
@@ -37,8 +42,10 @@ to convince them to go with you to bring the killer in.""")
 
         print("Q. Quit game")
 
+        ## Hooks the user input to a variable.
         choice = input("Enter your choice: ").strip()
 
+        ## Specifies which inputs are allowed and their effects.
         if choice == "1" and not player.is_choice_selected("chapter5", "is_anyone_home"):
             knock_on_door()
             player.mark_choice_selected("chapter5", "is_anyone_home")
@@ -64,6 +71,7 @@ to convince them to go with you to bring the killer in.""")
         else:
             print("Invalid choice or action already completed. Please select another option.")
 
+## Defines a function for user interaction.
 def knock_on_door():
     print("""You slam your fist against the front door. It takes a few minutes but someone eventually cracks open the door.""")
     time.sleep(1)
@@ -88,11 +96,11 @@ def look_around_residence():
     location = chapter1.weapon.get("location", "tucked in a corner of the house.")
     print(f"""As {chapter4.npc_name} distracts {npc_name}, you quickly scour the house, finding the weapon
 {location}""")
-    player.add_evidence(1)
+    player.add_evidence(1) ## Adds a positive value to the evidence counter.
     print()
 
 def arrest_suspect():
-    if player.evidence_value >= 9:
+    if player.evidence_value >= 9: ## Performs a check to see if the amount of evidence collected is higher than or equal to 9.
         print(f"""You and {chapter4.npc_name} placed {npc_name} under arrest. After a thorough interrogation and upon being
 presented a mountain of evidence, they confessed to the murder.""")
         time.sleep(2)

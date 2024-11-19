@@ -6,13 +6,18 @@
 
 
 
+## Imports Python's 'random' and 'time' libraries and directly imports the 'loading', 'chapter1', 'chapter2', and 'chapter4' .py files.
+## Imports a number of lists and functions from 'global_database.py'.
 from global_database import player, get_random_npc_name, select_murder_weapon, hotel_names, bar_names, city_names, gun_store_names, display_chapter_visits
 import random, time, loading, chapter1, chapter2, chapter4
 
+## Globally defines the 'get_random_npc_name' function to a variable.
 global npc_name
 npc_name = get_random_npc_name()
 
+## Defines a function to start the chapter.
 def start_chapter():
+    ## Calls the 'mark_chapter_visited' function from the Player class with the specified 'chapter3' entry.
     player.mark_chapter_visited("chapter3")
     print("Chapter 3: It only takes One Bullet")
     print(f"""After getting a tip from {chapter2.npc_name}, the bartender of {chapter1.random_bar}, 
@@ -44,8 +49,10 @@ you head to the provided location, {chapter2.random_gun_store}.""")
 
         print("Q. Quit game")
 
+        ## Hooks the user input to a variable.
         choice = input("Enter your choice: ").strip()
 
+        ## Specifies which inputs are allowed and their effects.
         if choice == "1" and npc_name and not player.is_choice_selected("chapter3", "talk_to_owner"):
             talk_to_owner(npc_name)
             player.mark_choice_selected("chapter3", "talk_to_owner")
@@ -101,10 +108,10 @@ you head to the provided location, {chapter2.random_gun_store}.""")
         else:
             print("Invalid choice or action already completed. Please select another option.")
 
-
+## Defines a function for user interaction.
 def talk_to_owner(npc_name):
     print(f"""You talk to the owner, {npc_name}. They provide a description that roughly matches what you've received previously""")
-    player.add_evidence(1)
+    player.add_evidence(1) ## Adds a positive value to the evidence counter.
     time.sleep(1)
     print()
 
